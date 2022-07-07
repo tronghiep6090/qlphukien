@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2020 at 02:45 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.2.26
+-- Generation Time: Jul 07, 2022 at 10:12 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_quan_ly_ban_hang`
+-- Database: `db_qlphukien`
 --
 
 -- --------------------------------------------------------
@@ -44,11 +43,42 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `c_parent_id`, `c_supplier_id`, `c_name`, `c_code`, `c_active`, `created_at`, `updated_at`) VALUES
-(5, 0, NULL, 'Bánh kẹo', 'iZv9Owz0IwDcjbk', 1, '2019-09-19 09:13:39', '2019-09-19 09:13:39'),
-(6, 0, NULL, 'Nước giải khát', '4mFmrcqTJ36NgGy', 1, '2019-09-19 09:13:58', '2019-09-19 09:13:58'),
-(7, 0, NULL, 'Dầu ăn', 'CPFwFyIJESVoVsH', 1, '2019-09-19 09:14:29', '2019-09-19 09:14:29'),
-(8, 0, NULL, 'Bột ngọt', 'ZNMVadYoikayyEe', 1, '2019-09-19 09:14:51', '2019-09-19 09:14:51'),
-(9, 0, 4, 'Đinh', '123', 1, '2020-05-29 05:29:22', '2020-10-26 13:07:07');
+(6, 0, NULL, 'Pin', 'Pi_02', 1, '2022-05-02 09:13:58', '2022-05-11 03:47:32'),
+(9, 0, 4, 'Gậy tự sướng', 'GT_01', 1, '2022-05-02 05:29:22', '2022-05-11 03:54:07'),
+(10, 0, NULL, 'Ốp lưng', 'OL_03', 1, '2022-05-08 17:13:50', '2022-05-11 03:46:55'),
+(11, 0, NULL, 'Camera', 'CM_04', 1, '2022-05-09 02:43:37', '2022-05-11 03:45:26'),
+(12, 0, NULL, 'Tai nghe', 'TN_05', 1, '2022-05-09 07:13:30', '2022-05-11 02:19:48'),
+(13, 0, NULL, 'Cáp, sạc', 'CS_08', 1, '2022-05-11 03:48:34', '2022-05-11 03:48:34'),
+(14, 0, NULL, 'Đồ dùng thông minh', 'DDTM_06', 1, '2022-05-11 03:50:20', '2022-05-11 03:50:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customers`
+--
+
+CREATE TABLE `customers` (
+  `id` int(11) NOT NULL,
+  `ct_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ct_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ct_email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ct_phone` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ct_status` tinyint(4) DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `ct_name`, `ct_code`, `ct_email`, `ct_phone`, `ct_status`, `created_at`, `updated_at`) VALUES
+(2, 'Nguyễn Quốc Nhựt', 'NN_02', 'nhut@gmail.com', '0928817228', 1, '2022-05-11 04:16:03', '2022-05-11 04:16:03'),
+(3, 'Trần Văn Dương', 'TD_01', 'duong@gmail.com', '0633747479', 1, '2022-05-11 04:15:26', '2022-05-11 04:15:26'),
+(4, 'Đặng Văn Phúc', 'DP_03', 'phuc@gmail.com', '0833663211', 1, '2022-05-11 04:16:41', '2022-05-11 04:16:41'),
+(5, 'Trương Minh Quốc', 'TQ_04', 'quoc@gmail.com', '0986563321', 1, '2022-05-11 04:17:22', '2022-05-11 04:17:22'),
+(6, 'Lưu Bá Đức', 'LD_06', 'duc@gmail.com', '0736355271', 0, '2022-05-11 04:18:08', '2022-05-11 04:18:08'),
+(7, 'Phan Văn Tuấn', 'PT_05', 'tuan@gmail.com', '0938335355', 0, '2022-05-11 04:18:53', '2022-05-11 04:18:53');
 
 -- --------------------------------------------------------
 
@@ -69,7 +99,7 @@ CREATE TABLE `group_permission` (
 --
 
 INSERT INTO `group_permission` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Toàn bộ hệ thống', 'Toàn bộ quyền quản lý hệ thống', '2019-10-09 04:23:54', '2019-10-09 04:23:54'),
+(1, 'Toàn bộ hệ thống', 'Toàn bộ quyền quản lý hệ thống', '2022-04-30 04:23:54', '2019-10-09 04:23:54'),
 (2, 'Quản lý loại hàng', NULL, '2019-10-09 04:24:36', '2019-10-09 04:25:30'),
 (3, 'Quản lý đơn vị tính', NULL, '2019-10-09 04:25:56', '2019-10-09 04:25:56'),
 (4, 'Quản lý sản phẩm', NULL, '2019-10-09 04:26:03', '2019-10-09 04:26:03'),
@@ -248,12 +278,15 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `p_category_id`, `p_unit_id`, `p_user_id`, `p_code`, `p_name`, `p_images`, `p_entry_price`, `p_retail_price`, `p_cost_price`, `p_total_number`, `p_description`, `p_content`, `p_status`, `created_at`, `updated_at`) VALUES
-(4, 7, 4, 1, 'lfbJ52NKq9PiO0F', 'Dầu ăn tường an', NULL, 40000.00, 50000.00, 45000.00, 70, NULL, NULL, 1, '2019-09-19 09:16:32', '2019-09-23 08:50:54'),
-(5, 7, 4, 1, 'KQjJ3uHZp4tIQrv', 'Dầu ăn cái lân', NULL, 20000.00, 35000.00, 33000.00, 50, NULL, NULL, 1, '2019-09-20 02:52:00', '2019-09-23 08:50:54'),
-(6, 8, 5, 1, '8xvu47x6fJF8mcY', 'Bột canh iot', NULL, 3000.00, 4500.00, 4000.00, 30, NULL, NULL, 1, '2019-09-20 02:52:45', '2019-09-23 08:26:40'),
-(7, 6, 4, 1, 'PRr8vHYXRJmVYvh', 'Coca cola', NULL, 7500.00, 10000.00, 9000.00, 100, NULL, NULL, 1, '2019-09-20 02:53:31', '2019-09-23 08:50:54'),
-(8, 6, 4, 1, 'NFLeGHMU6IvozrA', 'Pepsi', NULL, 6500.00, 9000.00, 8500.00, 0, NULL, NULL, 0, '2019-09-20 02:54:07', '2019-10-04 10:17:43'),
-(9, 9, 8, 1, 'ĐINHMA', 'ĐINH', NULL, 1000.00, 10000.00, 9500.00, 0, NULL, NULL, 1, '2020-05-29 05:30:57', '2020-05-29 05:30:57');
+(7, 10, 8, 1, 'O_03', 'Ốp trái táo', '7e855c6847ae599d91a25f374ad3a131.jpg', 10000.00, 18000.00, 15000.00, 100, NULL, NULL, 1, '2019-09-20 02:53:31', '2022-05-11 04:01:58'),
+(8, 6, 5, 1, 'P_02', 'Pin dự phòng', '28644395ba1175272bb357683d099d46.jpg', 25000.00, 32000.00, 29000.00, 0, NULL, NULL, 1, '2019-09-20 02:54:07', '2022-05-11 03:59:53'),
+(9, 9, 4, 1, 'MH_01', 'Gập chụp hình Bluetooth', '8bbfa7de9b97a142a5beb1e11e335286.jpg', 30000.00, 40000.00, 38000.00, 0, NULL, NULL, 1, '2020-05-29 05:30:57', '2022-05-11 03:58:10'),
+(10, 12, 5, 1, 'TN_04', 'Tai nghe có dây', '37f4239cb62373379bd8e42a92f43bc6.jpg', 20000.00, 28000.00, 25000.00, 0, NULL, NULL, 1, '2022-05-09 07:22:25', '2022-05-11 03:58:44'),
+(11, 13, 4, 1, 'CD_06', 'Cáp sạc có dây', 'c268e29d391c0da0389ff2ab0570a0c3.jpg', 30000.00, 40000.00, 36000.00, 0, NULL, NULL, 1, '2022-05-11 04:04:52', '2022-05-11 04:04:52'),
+(12, 13, 4, 1, 'CK_05', 'Cáp sạc nam châm', 'cf799dca8fc1eb920fa8646cd9c07a29.jpg', 30000.00, 42000.00, 38000.00, 0, NULL, NULL, 1, '2022-05-11 04:06:59', '2022-05-11 04:07:38'),
+(13, 14, 4, 1, 'TC_07', 'Tay cầm chơi game', '8cca519aafd7aef6e763c71afc3c0ca8.jpg', 40000.00, 51000.00, 48000.00, 0, NULL, NULL, 1, '2022-05-11 04:09:33', '2022-05-11 04:09:33'),
+(14, 14, 4, 1, 'GD_08', 'Giá đỡ', '7f72fa77d2518f9363bd4765a7311479.jpg', 25000.00, 35000.00, 28000.00, 0, NULL, NULL, 1, '2022-05-11 04:12:01', '2022-05-11 04:12:01'),
+(15, 11, 8, 1, 'CM_09', 'Camera mini', '68d6ab9bb1687360aad21a757aa21abb.jpg', 40000.00, 51000.00, 490000.00, 0, NULL, NULL, 1, '2022-05-11 04:14:11', '2022-05-14 02:29:43');
 
 -- --------------------------------------------------------
 
@@ -266,15 +299,16 @@ CREATE TABLE `product_warehousing` (
   `pw_product_id` int(10) UNSIGNED DEFAULT NULL,
   `pw_warehousing_id` int(10) UNSIGNED DEFAULT NULL,
   `pw_supplier_id` int(10) UNSIGNED DEFAULT NULL,
+  `pw_customer_id` int(11) DEFAULT NULL,
   `pw_total_number` int(11) DEFAULT 0,
-  `pw_manufacturing_date` date DEFAULT NULL,
-  `pw_expiry_date` date DEFAULT NULL,
   `pw_active_price` tinyint(4) DEFAULT NULL,
   `pw_custom_price` double(15,2) DEFAULT NULL,
   `pw_total_price` decimal(15,2) DEFAULT NULL,
   `pw_note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `pw_location` tinyint(4) DEFAULT NULL,
   `pw_type` tinyint(4) DEFAULT NULL,
+  `pw_manufacturing_date` datetime DEFAULT NULL,
+  `pw_expiry_date` datetime DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -283,16 +317,26 @@ CREATE TABLE `product_warehousing` (
 -- Dumping data for table `product_warehousing`
 --
 
-INSERT INTO `product_warehousing` (`id`, `pw_product_id`, `pw_warehousing_id`, `pw_supplier_id`, `pw_total_number`, `pw_manufacturing_date`, `pw_expiry_date`, `pw_active_price`, `pw_custom_price`, `pw_total_price`, `pw_note`, `pw_location`, `pw_type`, `created_at`, `updated_at`) VALUES
-(1, 4, 1, 5, 50, '2019-10-01', '2019-11-30', 1, NULL, '2000000.00', NULL, NULL, 1, '2019-10-11 07:17:09', '2019-10-11 07:17:09'),
-(2, 5, 1, 4, 180, '2019-10-18', '2019-12-20', 1, NULL, '3600000.00', NULL, NULL, 1, '2019-10-11 07:17:09', '2019-10-11 07:17:09'),
-(3, 7, 1, 6, 300, '2019-10-31', '2019-12-31', 1, NULL, '2250000.00', NULL, NULL, 1, '2019-10-11 07:17:09', '2019-10-11 07:17:09'),
-(4, 8, 1, 7, 900, '2019-10-30', '2019-12-31', 1, NULL, '5850000.00', NULL, NULL, 1, '2019-10-11 07:17:09', '2019-10-11 07:17:09'),
-(5, 4, 2, 5, 8, '2019-01-01', '2019-01-12', 4, 30000.00, '240000.00', NULL, NULL, 1, '2019-10-21 10:23:10', '2019-10-21 10:23:10'),
-(6, 7, 2, 6, 50, '2019-01-05', '2020-01-12', 4, 10000.00, '500000.00', NULL, NULL, 1, '2019-10-21 10:23:10', '2019-10-21 10:23:10'),
-(7, 9, 3, 4, 1000, '0001-11-12', '0002-02-01', 1, NULL, '1000000.00', NULL, NULL, 1, '2020-05-29 05:34:51', '2020-05-29 05:34:51'),
-(8, 9, 4, 4, -999, NULL, NULL, 1, NULL, '999000.00', NULL, NULL, 2, '2020-05-29 05:36:26', '2020-05-29 05:36:26'),
-(10, 9, 6, 4, -1, NULL, NULL, 4, 1000000.00, '1000000.00', NULL, NULL, 2, '2020-05-29 05:44:00', '2020-05-29 05:44:00');
+INSERT INTO `product_warehousing` (`id`, `pw_product_id`, `pw_warehousing_id`, `pw_supplier_id`, `pw_customer_id`, `pw_total_number`, `pw_active_price`, `pw_custom_price`, `pw_total_price`, `pw_note`, `pw_location`, `pw_type`, `pw_manufacturing_date`, `pw_expiry_date`, `created_at`, `updated_at`) VALUES
+(48, 8, 24, 4, NULL, 15, 1, NULL, '97500.00', NULL, NULL, 1, NULL, NULL, '2022-05-10 02:51:43', '2022-05-10 02:51:43'),
+(54, 9, 35, 10, NULL, 15, 1, NULL, '450000.00', NULL, NULL, 1, NULL, NULL, '2022-05-11 04:23:27', '2022-05-11 04:23:27'),
+(55, 10, 36, 8, NULL, 15, 1, NULL, '300000.00', NULL, NULL, 1, NULL, NULL, '2022-05-11 04:26:38', '2022-05-11 04:26:38'),
+(56, 11, 36, 8, NULL, 15, 1, NULL, '450000.00', NULL, NULL, 1, NULL, NULL, '2022-05-11 04:26:38', '2022-05-11 04:26:38'),
+(57, 12, 37, 7, NULL, 15, 1, NULL, '450000.00', NULL, NULL, 1, NULL, NULL, '2022-05-11 04:28:16', '2022-05-11 04:28:16'),
+(58, 13, 37, 7, NULL, 15, 1, NULL, '600000.00', NULL, NULL, 1, NULL, NULL, '2022-05-11 04:28:16', '2022-05-11 04:28:16'),
+(59, 14, 38, 6, NULL, 15, 1, NULL, '375000.00', NULL, NULL, 1, NULL, NULL, '2022-05-11 04:29:40', '2022-05-11 04:29:40'),
+(60, 15, 38, 6, NULL, 15, 1, NULL, '600000.00', NULL, NULL, 1, NULL, NULL, '2022-05-11 04:29:40', '2022-05-11 04:29:40'),
+(61, 15, 39, NULL, 3, -2, 2, NULL, '102000.00', NULL, NULL, 2, NULL, NULL, '2022-05-11 07:02:25', '2022-05-11 07:02:25'),
+(62, 14, 40, NULL, 2, -2, 3, NULL, '56000.00', NULL, NULL, 2, NULL, NULL, '2022-05-11 07:04:04', '2022-05-11 07:04:04'),
+(63, 13, 41, NULL, 5, -2, 2, NULL, '102000.00', NULL, NULL, 2, NULL, NULL, '2022-05-11 07:05:19', '2022-05-11 07:05:19'),
+(64, 13, 42, 7, NULL, 2, 1, NULL, '80000.00', NULL, NULL, 1, NULL, NULL, '2022-05-12 16:31:05', '2022-05-12 16:31:05'),
+(65, 14, 42, 6, NULL, 2, 1, NULL, '50000.00', NULL, NULL, 1, NULL, NULL, '2022-05-12 16:31:05', '2022-05-12 16:31:05'),
+(67, 15, 43, 6, NULL, 10, 1, NULL, '400000.00', NULL, NULL, 1, NULL, NULL, '2022-05-13 02:44:20', '2022-05-13 02:44:20'),
+(68, 10, 44, NULL, 3, -10, 3, NULL, '250000.00', NULL, NULL, 2, NULL, NULL, '2022-05-13 02:49:25', '2022-05-13 02:49:25'),
+(69, 15, 44, NULL, 3, -7, 2, NULL, '357000.00', NULL, NULL, 2, NULL, NULL, '2022-05-13 02:49:25', '2022-05-13 02:49:25'),
+(70, 10, 45, 6, NULL, 15, 1, NULL, '300000.00', NULL, NULL, 1, NULL, NULL, '2022-05-14 02:31:03', '2022-05-14 02:31:03'),
+(71, 7, 45, 6, NULL, 15, 1, NULL, '150000.00', NULL, NULL, 1, NULL, NULL, '2022-05-14 02:31:03', '2022-05-14 02:31:03'),
+(72, 11, 46, NULL, 3, -10, 3, NULL, '360000.00', NULL, NULL, 2, NULL, NULL, '2022-05-14 02:33:31', '2022-05-14 02:33:31');
 
 -- --------------------------------------------------------
 
@@ -314,8 +358,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'administration', 'Administration', NULL, '2019-10-09 07:37:59', '2019-10-09 07:37:59'),
-(2, 'vn', 'vn', NULL, '2020-05-29 05:46:32', '2020-05-29 05:46:32');
+(1, 'admin', 'Admin', NULL, '2022-05-03 07:37:59', '2022-05-08 04:51:32'),
+(2, 'nhan-vien', 'Nhân viên', NULL, '2022-05-03 05:46:32', '2022-05-08 04:56:03');
 
 -- --------------------------------------------------------
 
@@ -334,8 +378,9 @@ CREATE TABLE `role_user` (
 
 INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
 (1, 1),
-(2, 1),
-(3, 2);
+(2, 2),
+(4, 2),
+(5, 2);
 
 -- --------------------------------------------------------
 
@@ -362,12 +407,14 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`id`, `s_name`, `s_code`, `s_email`, `s_phone`, `s_fax`, `s_website`, `s_logo`, `s_status`, `created_at`, `updated_at`) VALUES
-(4, 'Cái Lân', 'qlUv3GvEjt7zjWT', 'cailan@gmail.com', '0928817228', NULL, NULL, NULL, 1, '2019-09-19 09:08:03', '2019-09-19 09:08:03'),
-(5, 'Tường An', 'xCXXrKsMCuF9D8a', 'tuongan@gmail.com', '0928817228', NULL, NULL, NULL, 1, '2019-09-19 09:08:27', '2019-09-19 09:08:27'),
-(6, 'Coca Cola', 'kxGBtYRLeljoQlV', 'coacacola@gmail.com', '0928817228', NULL, NULL, NULL, 1, '2019-09-19 09:08:58', '2019-09-19 09:08:58'),
-(7, 'Pepsi', 'vlziGqINJB7jKde', 'pepsi@gmail.com', '0928817228', NULL, NULL, NULL, 1, '2019-09-19 09:09:59', '2019-09-19 09:09:59'),
-(8, 'Alibaba', '4Se6WpqQ3Yeivk7', 'alibaba@gmail.com', '0928817228', NULL, NULL, NULL, 1, '2019-09-19 09:11:33', '2019-09-19 09:11:33'),
-(9, 'Custas', 'coi5cycdJqrTxR6', 'Custas@gmail.com', '0928817228', NULL, NULL, NULL, 1, '2019-09-19 09:12:48', '2019-09-19 09:12:48');
+(4, 'Lenovo', 'NCC_06', 'Lenovo@gmail.com', '0747999991', NULL, NULL, NULL, 1, '2022-05-01 09:08:03', '2022-05-08 17:03:26'),
+(5, 'Nokia', 'NCC_05', 'Nokia@gmail.com', '0987875641', NULL, NULL, NULL, 1, '2022-05-01 09:08:27', '2022-05-08 17:02:46'),
+(6, 'Oppo', 'NCC_04', 'Oppo@gmail.com', '0973723621', NULL, NULL, NULL, 1, '2022-05-01 09:08:58', '2022-05-08 17:01:45'),
+(7, 'Huawei', 'NCC_03', 'Huawei@gmail.com', '0934356711', NULL, NULL, NULL, 1, '2022-05-01 09:09:59', '2022-05-08 17:01:16'),
+(8, 'Samsung', 'NCC_02', 'Samsung@gmail.com', '0927635362', NULL, NULL, NULL, 1, '2022-05-01 09:11:33', '2022-05-08 17:00:39'),
+(9, 'Apple', 'NCC_01', 'Apple@gmail.com', '0928817228', NULL, NULL, NULL, 1, '2022-05-01 09:12:48', '2022-05-08 16:59:34'),
+(10, 'Vivo', 'NCC_07', 'Vivo@gmail.com', '0937373732', NULL, NULL, NULL, 1, '2022-05-09 07:05:37', '2022-05-09 07:05:37'),
+(12, 'Motorola', 'NCC_08', 'motorola@gmail.com', '0998838331', 'fax', 'web', NULL, 0, '2022-05-13 02:38:37', '2022-05-13 02:39:06');
 
 -- --------------------------------------------------------
 
@@ -388,11 +435,9 @@ CREATE TABLE `units` (
 --
 
 INSERT INTO `units` (`id`, `u_code`, `u_name`, `created_at`, `updated_at`) VALUES
-(2, 'TH456', 'Thùng', '2019-09-12 07:41:46', '2019-09-12 07:41:46'),
-(3, 'HO123', 'Hộp', '2019-09-12 07:42:02', '2019-09-12 07:42:02'),
-(4, 'CH789', 'Chai', '2019-09-12 07:42:30', '2019-09-12 07:42:30'),
-(5, 'BI159', 'Bịch', '2019-09-12 07:42:48', '2019-09-12 07:42:48'),
-(8, 'CHIEC', 'CHIẾC', '2020-05-29 05:29:51', '2020-10-26 13:07:54');
+(4, 'DV_03', 'Bộ', '2022-05-03 07:42:30', '2022-05-08 17:17:13'),
+(5, 'DV_02', 'Cái', '2022-05-03 07:42:48', '2022-05-08 17:16:59'),
+(8, 'DV_01', 'Chiếc', '2022-05-03 05:29:51', '2022-05-08 17:16:42');
 
 -- --------------------------------------------------------
 
@@ -419,9 +464,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `account`, `password`, `full_name`, `email`, `phone`, `avatar`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', '$2y$10$o0536xrgEK55EUZJorcju.pzFXmgwjkblc2pqEYtg24QZra7fubcq', 'Admin', 'duocnvoit@gmail.com', '12345678', NULL, 1, 'UP6alxEe65Ngd8JBKpAECR52m9Vk2BUt93L7TFQWGQubUOisU2pFc6WMCrI2', '2019-09-12 02:55:20', '2019-09-12 02:55:20'),
-(2, 'test', '$2y$10$RLJtGunp6SnkRIua7DTkW.qeqU9cXD.EKlY4yiRHL0vGNfa/Fvr3S', 'Test', 'test@gmail.com', '1659020898', NULL, 1, 'Y7UHvaryKo6TJkQhqTQ3hqMkT5ZG9dTMC52Id7od', NULL, NULL),
-(3, 'VN', '$2y$10$DYXF62Zd7BbDOBktDes4Ae0wYW2x4Y6gO6ygLd96GLBJ5YEg5UY/K', 'TUNG', 'TUNG@123.COM', '0982675534', NULL, 1, 'L0eHHrvOMl8azhDhui2N0eyWeX30K3nD3fspKHI0Z1CmhxvKnEpf8DLLlwtI', NULL, NULL);
+(1, 'admin', '$2y$10$o0536xrgEK55EUZJorcju.pzFXmgwjkblc2pqEYtg24QZra7fubcq', 'Admin', 'hiep@gmail.com', '12345678', NULL, 1, '3id82TQcpJ6Fxe4nHCY6Znqd2WKm4Fj3AIXcKbO2Yc64pIVn4gO490ngDqc8', '2019-09-12 02:55:20', '2022-05-08 17:54:04'),
+(2, 'test', '123456', 'Test', 'test@gmail.com', '123456', NULL, 1, '123456', NULL, NULL),
+(4, 'duong', '$2y$10$mKHjsVnc5gB7H5cuoB9dW.iv2kcmoPjPh2jmsi5YL68hpYGIY52v2', 'Trần Văn Dương', 'duong@gmail.com', '0868906000', NULL, 1, 'PftnddCTe0CMFY6mQLAaiKEYDZwlFZWAWfYOMFF3IVZEyRRe9IhbFQFD3QyF', NULL, NULL),
+(5, 'Quang', '$2y$10$fdjhHNOeTaAZ1S2ERDCw5uvjufGSjS4gt/wah4fqq4Snu97/qDXMa', 'Đặng Minh Quang', 'quang@gmail.com', '0474747331', NULL, 1, '0wnj8MqU8EojS024F1iyhDkvZbTNz8Zb3ICoKePegATvDpsOhA3f9wCnRjTG', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -445,11 +491,31 @@ CREATE TABLE `warehousing` (
 --
 
 INSERT INTO `warehousing` (`id`, `pw_user_id`, `w_code`, `w_name`, `w_note`, `w_type`, `created_at`, `updated_at`) VALUES
-(1, 1, '3IhgJUdJZTvHSbw', 'Test phiếu nhập kho', NULL, 1, '2019-10-11 07:17:09', '2019-10-11 07:17:09'),
-(2, 1, 'zhG7Z751T4KREcA', 'Lotte Hotel Hanoi', 'Lotte Hotel Hanoi', 1, '2019-10-21 10:23:10', '2019-10-21 10:23:10'),
-(3, 1, '121199', 'NHẬP HÀNG NGÀY 1211', 'TEST', 1, '2020-05-29 05:34:51', '2020-05-29 05:34:51'),
-(4, 1, '1211999', 'BÁN HÀNG', 'TEST', 2, '2020-05-29 05:36:26', '2020-05-29 05:36:26'),
-(6, 1, 'sdfsdfsdf', 'sdfsdfsdf', 'sdf', 2, '2020-05-29 05:44:00', '2020-05-29 05:44:00');
+(6, 1, 'DHX_02', 'xuất mới', 'kkkk', 2, '2022-05-02 05:44:00', '2022-05-08 17:40:13'),
+(7, 1, 'DHN_03', 'nhập thêm', NULL, 1, '2022-05-05 10:28:39', '2022-05-08 17:36:15'),
+(9, 1, 'DHN_02', 'Thêm mới', NULL, 1, '2022-05-05 12:40:49', '2022-05-08 17:36:38'),
+(11, 1, 'DHX_01', 'xuất', NULL, 2, '2022-05-05 15:45:02', '2022-05-08 17:39:14'),
+(12, 1, 'DHN_01', 'thêm', NULL, 1, '2022-05-08 17:33:28', '2022-05-08 17:33:28'),
+(17, 1, 'NXX_12/11/2021', 'xuất mới', NULL, 2, '2022-05-09 03:31:11', '2022-05-09 03:31:11'),
+(18, 1, 'NCC_12/11/2021', 'xuất mới', NULL, 2, '2022-05-09 06:38:52', '2022-05-09 06:38:52'),
+(20, 1, 'DHN_25', 'Thêm ốp lenovo', NULL, 1, '2022-05-09 07:25:48', '2022-05-09 07:25:48'),
+(21, 1, 'DHN_17', 'thêm ốp', NULL, 1, '2022-05-09 08:17:48', '2022-05-09 08:17:48'),
+(22, 1, 'DHN_19', 'thêm ốp', NULL, 1, '2022-05-09 08:19:39', '2022-05-09 08:19:39'),
+(23, 1, 'DHN_30', 'thêm màn hình', NULL, 1, '2022-05-09 08:31:39', '2022-05-09 08:31:39'),
+(24, 1, 'DHN_38', 'thêm pin', NULL, 1, '2022-05-09 08:38:47', '2022-05-10 02:51:43'),
+(26, 1, 'NMM_12/11/2021', 'xuất', NULL, 2, '2022-05-10 02:30:57', '2022-05-10 02:30:57'),
+(35, 1, 'DHN_22', 'nhập thêm', 'vivo', 1, '2022-05-11 04:23:27', '2022-05-11 04:23:27'),
+(36, 1, 'DHN_24', 'Nhập thêm tai nghe, cáp sạc', 'samsung', 1, '2022-05-11 04:26:38', '2022-05-11 04:26:38'),
+(37, 1, 'DHN_26', 'Nhập thêm cáp sạc nam châm, tay cầm', 'Huawei', 1, '2022-05-11 04:28:16', '2022-05-11 04:28:16'),
+(38, 1, 'DHN_28', 'Nhập thêm giá đỡ, camera', 'Oppo', 1, '2022-05-11 04:29:40', '2022-05-11 04:29:40'),
+(39, 1, 'DHX_59', 'xuất mới', 'Xuất camera', 2, '2022-05-11 07:02:25', '2022-05-11 07:02:25'),
+(40, 1, 'DHX_53', 'xuất mới', 'Giá đỡ', 2, '2022-05-11 07:04:04', '2022-05-11 07:04:04'),
+(41, 1, 'DHX_54', 'xuất mới', 'Tay cầm', 2, '2022-05-11 07:05:19', '2022-05-11 07:05:19'),
+(42, 1, 'DHN_29', 'nhập thêm', 'tay cầm, giá đỡ', 1, '2022-05-12 16:31:05', '2022-05-12 16:31:05'),
+(43, 1, 'DHN_11', 'nhập thêm', 'cường lực', 1, '2022-05-13 02:44:20', '2022-05-13 02:44:20'),
+(44, 1, 'DHX_11', 'xuất mới', 'camera', 2, '2022-05-13 02:49:25', '2022-05-13 02:49:25'),
+(45, 1, 'DHN_20', 'nhập thêm', 'tai nghe', 1, '2022-05-14 02:31:03', '2022-05-14 02:31:03'),
+(46, 1, 'DHX_20', 'xuất', 'day sac', 2, '2022-05-14 02:33:31', '2022-05-14 02:33:31');
 
 --
 -- Indexes for dumped tables
@@ -463,6 +529,12 @@ ALTER TABLE `category`
   ADD UNIQUE KEY `category_c_code_unique` (`c_code`),
   ADD KEY `category_c_supplier_id_foreign` (`c_supplier_id`),
   ADD KEY `category_c_parent_id_index` (`c_parent_id`);
+
+--
+-- Indexes for table `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `group_permission`
@@ -568,7 +640,13 @@ ALTER TABLE `warehousing`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `group_permission`
@@ -598,13 +676,13 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `product_warehousing`
 --
 ALTER TABLE `product_warehousing`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -616,7 +694,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `units`
@@ -628,13 +706,13 @@ ALTER TABLE `units`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `warehousing`
 --
 ALTER TABLE `warehousing`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- Constraints for dumped tables
